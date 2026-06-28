@@ -26,6 +26,7 @@ public class ProductService {
         product.setPrice(request.getPrice());
         product.setStockQuantity(request.getStockQuantity());
 
+        product.setActive(true); // Here Every newly created product starts as a active
         Product savedProduct = productRepository.save(product);
 
         return mapToResponse(savedProduct);
@@ -96,7 +97,9 @@ public class ProductService {
                 product.getName(),
                 product.getDescription(),
                 product.getPrice(),
-                product.getStockQuantity()
+                product.getStockQuantity(),
+                product.getActive()
+
         );
     }
 }
