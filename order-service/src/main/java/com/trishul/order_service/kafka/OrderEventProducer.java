@@ -11,7 +11,7 @@ public class OrderEventProducer {
 
     private final KafkaTemplate<String, OrderCreatedEvent> kafkaTemplate;
 
-    public void publishOrderCreatedEvent(OrderCreatedEvent event) {
+    public void sendOrderCreatedEvent(OrderCreatedEvent event) {
         kafkaTemplate.send(KafkaTopics.ORDER_CREATED_TOPIC, event.getOrderNumber(), event);
     }
 }

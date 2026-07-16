@@ -74,10 +74,7 @@ public class OrderService {
     }
 
     @Transactional
-    public void updateOrderStatus(
-            String orderNumber,
-            OrderStatus newStatus
-    ) {
+    public void updateOrderStatus(String orderNumber,  OrderStatus newStatus) {
 
         Order order = orderRepository.findByOrderNumber(orderNumber)
                 .orElseThrow(() ->
@@ -87,8 +84,6 @@ public class OrderService {
                 );
 
         order.setStatus(newStatus);
-
-        orderRepository.save(order);
     }
 
     private OrderResponse mapToResponse(Order order) {
