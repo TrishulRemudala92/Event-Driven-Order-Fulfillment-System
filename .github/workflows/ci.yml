@@ -20,6 +20,7 @@ jobs:
           - order-service
           - product-service
           - payment-service
+          - user-service
 
     defaults:
       run:
