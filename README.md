@@ -118,5 +118,3 @@ Planned improvements include:
 - Spring Security and JWT authentication
 - Centralised exception handling
 - Docker and Docker Compose
-- Additional integration tests
-- Automated deployment
