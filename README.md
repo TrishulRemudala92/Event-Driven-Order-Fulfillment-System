@@ -8,7 +8,7 @@ When a new order is created, the Order Service stores the order and publishes an
 
 The system consists of four Spring Boot microservices: User Service, Product Service, Order Service, and Payment Service. Each service uses its own MySQL database. The Order Service publishes an `OrderCreatedEvent` to Apache Kafka, which is consumed by the Payment Service.
 
-![Event-Driven Order Fulfillment System](assets/Event-Driven-Order-Fulfillment-Final.png)
+![Architecture diagram](assets/Event-Driven-Order-Fulfillment-Final.png)
 
 ## Services
 
