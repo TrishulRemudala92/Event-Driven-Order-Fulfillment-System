@@ -4,6 +4,11 @@ This is a personal backend project developed to practise building microservices 
 
 When a new order is created, the Order Service stores the order and publishes an event to Kafka. The Payment Service consumes the event and creates the corresponding payment record. Duplicate payment processing is prevented by checking the order number before saving a new payment.
 
+## Project Architecture
+
+The system consists of four Spring Boot microservices: User Service, Product Service, Order Service, and Payment Service. Each service uses its own MySQL database. The Order Service publishes an `OrderCreatedEvent` to Apache Kafka, which is consumed by the Payment Service.
+
+
 ## Services
 
 - **Order Service** – Creates and retrieves customer orders.
