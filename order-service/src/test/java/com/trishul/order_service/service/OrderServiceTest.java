@@ -14,6 +14,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -48,7 +49,7 @@ class OrderServiceTest {
         OrderRequest request = new OrderRequest(
                 101L,
                 2,
-                49.99
+                new BigDecimal("49.99")
         );
 
         when(orderRepository.save(any(Order.class)))
@@ -76,7 +77,7 @@ class OrderServiceTest {
         assertNotNull(savedOrder.getOrderNumber());
         assertEquals(101L, savedOrder.getProductId());
         assertEquals(2, savedOrder.getQuantity());
-        assertEquals(49.99, savedOrder.getPrice(), 0.001);
+        assertEquals(new BigDecimal("49.99"), savedOrder.getPrice());
         assertEquals(OrderStatus.CREATED, savedOrder.getStatus());
         assertNotNull(savedOrder.getCreatedAt());
 
@@ -104,7 +105,7 @@ class OrderServiceTest {
                 "ORDER-1001",
                 101L,
                 2,
-                49.99,
+                BigDecimal.valueOf(49.99),
                 OrderStatus.CREATED
         );
 
@@ -113,7 +114,7 @@ class OrderServiceTest {
                 "ORDER-1002",
                 102L,
                 1,
-                79.99,
+                BigDecimal.valueOf(79.99),
                 OrderStatus.CONFIRMED
         );
 
@@ -159,7 +160,7 @@ class OrderServiceTest {
                 "ORDER-1001",
                 101L,
                 2,
-                49.99,
+                BigDecimal.valueOf(49.99),
                 OrderStatus.CREATED
         );
 
@@ -208,7 +209,7 @@ class OrderServiceTest {
                 "ORDER-1001",
                 101L,
                 2,
-                49.99,
+                BigDecimal.valueOf(49.99),
                 OrderStatus.CREATED
         );
 
@@ -262,7 +263,7 @@ class OrderServiceTest {
             String orderNumber,
             Long productId,
             Integer quantity,
-            Double price,
+            BigDecimal price,
             OrderStatus status
     ) {
         Order order = new Order();

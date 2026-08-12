@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,7 +29,7 @@ public class Order {
         private Integer quantity;
 
         @Column(nullable = false)
-        private Double price;
+        private BigDecimal price;
 
         @Enumerated(EnumType.STRING)
         @Column(nullable = false)

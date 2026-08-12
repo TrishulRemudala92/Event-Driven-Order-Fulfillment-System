@@ -7,6 +7,7 @@ import jakarta.validation.Validator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,7 +27,7 @@ public class OrderRequestValidationTest {
         OrderRequest request = new OrderRequest(
                 101L,
                 2,
-                49.99
+                new BigDecimal("49.99")
         );
 
         Set<ConstraintViolation<OrderRequest>> violations =
@@ -40,7 +41,7 @@ public class OrderRequestValidationTest {
         OrderRequest request = new OrderRequest(
                 null,
                 2,
-                49.99
+                new BigDecimal("49.99")
         );
 
         Set<ConstraintViolation<OrderRequest>> violations =
@@ -59,7 +60,7 @@ public class OrderRequestValidationTest {
         OrderRequest request = new OrderRequest(
                 101L,
                 0,
-                49.99
+                new BigDecimal("49.99")
         );
 
         Set<ConstraintViolation<OrderRequest>> violations =
@@ -78,7 +79,7 @@ public class OrderRequestValidationTest {
         OrderRequest request = new OrderRequest(
                 101L,
                 2,
-                0.0
+                new BigDecimal("0.00")
         );
 
         Set<ConstraintViolation<OrderRequest>> violations =

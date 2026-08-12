@@ -1,9 +1,13 @@
 package com.trishul.payment_service;
 
+import com.trishul.payment_service.service.PaymentService;
 import com.trishul.payment_service.entity.Payment;
 import com.trishul.payment_service.entity.PaymentStatus;
 import com.trishul.payment_service.event.OrderCreatedEvent;
+import com.trishul.payment_service.dto.PaymentResponse;
 import com.trishul.payment_service.repository.PaymentRepository;
+
+import com.trishul.payment_service.dto.PaymentResponse;
 import com.trishul.payment_service.service.PaymentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,6 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -38,7 +43,7 @@ public class PaymentServiceTest {
 
         orderCreatedEvent.setOrderNumber("ORD-1001");
         orderCreatedEvent.setQuantity(2);
-        orderCreatedEvent.setPrice(49.99);
+        orderCreatedEvent.setPrice(BigDecimal.valueOf(49.99));
     }
 
     @Test
@@ -60,7 +65,7 @@ public class PaymentServiceTest {
         assertNotNull(result);
         assertEquals(1L, result.getId());
         assertEquals("ORD-1001", result.getOrderNumber());
-        assertEquals(99.98, result.getAmount(), 0.001);
+        assertEquals(new BigDecimal("99.98"), result.getAmount());
         assertEquals(PaymentStatus.PENDING, result.getStatus());
         assertEquals("NOT_SELECTED", result.getPaymentMethod());
         assertNotNull(result.getProcessedAt());
@@ -91,7 +96,7 @@ public class PaymentServiceTest {
         Payment capturedPayment = paymentCaptor.getValue();
 
         assertEquals("ORD-1001", capturedPayment.getOrderNumber());
-        assertEquals(99.98, capturedPayment.getAmount(), 0.001);
+        assertEquals(new BigDecimal("99.98"), capturedPayment.getAmount());
         assertEquals(PaymentStatus.PENDING, capturedPayment.getStatus());
         assertEquals(
                 "NOT_SELECTED",
@@ -106,7 +111,7 @@ public class PaymentServiceTest {
         Payment existingPayment = new Payment(
                 1L,
                 "ORD-1001",
-                99.98,
+                new BigDecimal("99.98"),
                 PaymentStatus.PENDING,
                 "NOT_SELECTED",
                 LocalDateTime.now()
@@ -254,7 +259,7 @@ public class PaymentServiceTest {
     @Test
     void processOrderCreatedEvent_shouldThrowExceptionWhenPriceIsZero() {
 
-        orderCreatedEvent.setPrice(0.0);
+        orderCreatedEvent.setPrice(BigDecimal.valueOf(0.0));
 
         IllegalArgumentException exception =
                 assertThrows(
@@ -278,7 +283,7 @@ public class PaymentServiceTest {
         Payment payment = new Payment(
                 1L,
                 "ORD-1001",
-                99.98,
+                new BigDecimal("99.98"),
                 PaymentStatus.PENDING,
                 "NOT_SELECTED",
                 LocalDateTime.now()
@@ -287,12 +292,11 @@ public class PaymentServiceTest {
         when(paymentRepository.findByOrderNumber("ORD-1001"))
                 .thenReturn(Optional.of(payment));
 
-        Payment result =
-                paymentService.getPaymentByOrderNumber("ORD-1001");
+        var result = paymentService.getPaymentByOrderNumber("ORD-1001");
 
         assertNotNull(result);
         assertEquals("ORD-1001", result.getOrderNumber());
-        assertEquals(99.98, result.getAmount(), 0.001);
+        assertEquals(new BigDecimal("99.98"), result.getAmount());
 
         verify(paymentRepository)
                 .findByOrderNumber("ORD-1001");
@@ -312,7 +316,7 @@ public class PaymentServiceTest {
                 );
 
         assertEquals(
-                "Payment not found for order: ORD-9999",
+                "Payment not found for order number: ORD-9999",
                 exception.getMessage()
         );
 
