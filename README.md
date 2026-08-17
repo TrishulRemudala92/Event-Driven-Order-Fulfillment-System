@@ -27,6 +27,7 @@ When a new order is created, the Order Service stores the order and publishes an
 - Swagger/OpenAPI
 - Postman
 - GitHub Actions
+- Docker
 
 ## Application Flow
 
@@ -120,4 +121,4 @@ Planned improvements include:
 
 - Spring Security and JWT authentication
 - Centralised exception handling
-- Docker and Docker Compose
+- Docker Compose
