@@ -17,8 +17,9 @@ import java.util.List;
 public class PaymentController {
     private final PaymentService paymentService;
 
-    @GetMapping("/order/{orderNumber}")
-    public ResponseEntity<List<PaymentResponse>> getAllPayments() {
+    @GetMapping
+    public ResponseEntity<List<PaymentResponse>> getAllPayments()
+    {
         return ResponseEntity.ok(paymentService.getAllPayments());
     }
 
