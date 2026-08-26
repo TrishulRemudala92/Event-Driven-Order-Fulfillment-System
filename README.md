@@ -113,12 +113,70 @@ mvn clean test
 
 A GitHub Actions workflow is also configured to run the Maven tests automatically when code changes are pushed to the repository.
 
+## Running the Project
+
+### Requirements
+
+For running the complete application with Docker, make sure Docker Desktop is installed and running.
+
+### Run with Docker Compose
+
+The project includes a `compose.yaml` file for running the four microservices together with MySQL and Apache Kafka.
+
+Build the Docker images:
+
+```bash
+docker compose build
+```
+
+Start all containers:
+
+```bash
+docker compose up -d
+```
+
+Check the running containers:
+
+```bash
+docker compose ps
+```
+
+View container logs:
+
+```bash
+docker compose logs
+```
+
+Stop the containers:
+
+```bash
+docker compose down
+```
+
+The `mysql-init.sql` script initializes the required MySQL databases when the MySQL container starts.
+
+### Run Services Manually
+
+The services can also be started individually without Docker.
+
+Make sure Java 17, Maven, MySQL and Apache Kafka are installed and running.
+
+Start a service using:
+
+```bash
+cd order-service
+mvn spring-boot:run
+```
+
+Repeat the command for `product-service`, `payment-service` and `user-service`.
+
 ## Project Status
 
-The main microservices, REST APIs, database operations, Kafka communication and service tests are implemented.
+The main microservices, REST APIs, database operations, Kafka communication, service tests and Docker-based container setup are implemented.
+
+The complete application can be started using Docker Compose with MySQL, Apache Kafka, Order Service, Product Service, Payment Service and User Service running as separate containers.
 
 Planned improvements include:
 
-- Spring Security and JWT authentication
-- Centralised exception handling
-- Docker Compose
+* Spring Security and JWT authentication
+* Centralised exception handling
