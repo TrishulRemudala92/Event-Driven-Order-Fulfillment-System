@@ -113,8 +113,6 @@ mvn clean test
 
 A GitHub Actions workflow is also configured to run the Maven tests automatically when code changes are pushed to the repository.
 
-## Running the Project
-
 ### Requirements
 
 For running the complete application with Docker, make sure Docker Desktop is installed and running.
@@ -169,6 +167,14 @@ mvn spring-boot:run
 ```
 
 Repeat the command for `product-service`, `payment-service` and `user-service`.
+| Service | Port |
+|---|---:|
+| Order Service | 8081 |
+| Product Service | 8082 |
+| Payment Service | 8083 |
+| User Service | 8084 |
+| Kafka | 9092 |
+| MySQL | 3307 → 3306 |
 
 ## Project Status
 
