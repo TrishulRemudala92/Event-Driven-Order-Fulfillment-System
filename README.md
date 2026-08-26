@@ -46,6 +46,9 @@ When a new order is created, the Order Service stores the order and publishes an
 | Product Service | 8082 |
 | Payment Service | 8083 |
 | User Service | 8084 |
+| Kafka | 9092 |
+| MySQL | 3307 → 3306 |
+
 
 ## Main API Endpoints
 
@@ -167,14 +170,6 @@ mvn spring-boot:run
 ```
 
 Repeat the command for `product-service`, `payment-service` and `user-service`.
-| Service | Port |
-|---|---:|
-| Order Service | 8081 |
-| Product Service | 8082 |
-| Payment Service | 8083 |
-| User Service | 8084 |
-| Kafka | 9092 |
-| MySQL | 3307 → 3306 |
 
 ## Project Status
 
