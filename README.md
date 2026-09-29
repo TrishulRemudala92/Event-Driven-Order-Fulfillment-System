@@ -177,7 +177,11 @@ The main microservices, REST APIs, database operations, Kafka communication, ser
 
 The complete application can be started using Docker Compose with MySQL, Apache Kafka, Order Service, Product Service, Payment Service and User Service running as separate containers.
 
+Kubernetes deployment is currently in progress. The goal is to run the microservices, MySQL and Apache Kafka together in a Kubernetes cluster using separate Kubernetes resources for each component.
+
 Planned improvements include:
 
+* Complete the Kubernetes deployment of the application
 * Spring Security and JWT authentication
 * Centralised exception handling
+
