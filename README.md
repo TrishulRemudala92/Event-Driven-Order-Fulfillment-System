@@ -237,22 +237,4 @@ Centralised exception handling
 
 Improved configuration and credential management
 
-## Project Status
-
-The four microservices, REST APIs, database operations, Kafka communication, unit tests and Docker Compose setup have been implemented.
-
-The application has also been deployed locally using Kubernetes with Kind. The main asynchronous order-to-payment flow was tested successfully.
-
-The project is intended for learning and practical experience with Java backend development, event-driven communication and containerized applications.
-
-
-## Planned Improvements
-
-Additional testing for duplicate-event handling
-
-Spring Security and JWT authentication
-
-Centralised exception handling
-
-Improved configuration and credential management
 
