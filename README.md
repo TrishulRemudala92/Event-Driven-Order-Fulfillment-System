@@ -185,15 +185,11 @@ The Docker images for the Spring Boot services are loaded into the Kind cluster 
 
 The main order-to-payment flow was tested using Swagger UI.
 
-Created an order through the Order Service API (HTTP 201).
-
-Retrieved the created order using its order number (HTTP 200).
-
-Verified that the Payment Service consumed the order event from Kafka.
-
-Retrieved the corresponding payment record through the Payment Service API (HTTP 200).
-
-Kubernetes port-forwarding was used to access the services locally.
+- Created an order through the Order Service API (HTTP 201).
+- Retrieved the created order using its order number (HTTP 200).
+- Verified that the Payment Service consumed the order event from Kafka.
+- Retrieved the corresponding payment record through the Payment Service API (HTTP 200).
+- Kubernetes port-forwarding was used to access the services locally.
 
 ### API Documentation
 
