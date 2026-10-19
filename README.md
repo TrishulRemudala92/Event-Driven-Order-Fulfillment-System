@@ -199,13 +199,10 @@ Kubernetes port-forwarding was used to access the services locally.
 
 Swagger UI is available at the following addresses when the services are accessible on their configured local ports:
 
-Order Service: http://localhost:8081/swagger-ui/index.html
-
-Product Service: http://localhost:8082/swagger-ui/index.html
-
-Payment Service: http://localhost:8083/swagger-ui/index.html
-
-User Service: http://localhost:8084/swagger-ui/index.html
+- Order Service: http://localhost:8081/swagger-ui/index.html
+- Product Service: http://localhost:8082/swagger-ui/index.html
+- Payment Service: http://localhost:8083/swagger-ui/index.html
+- User Service: http://localhost:8084/swagger-ui/index.html
 
 The APIs can also be tested using Postman.
 
@@ -229,12 +226,9 @@ The project is intended for learning and practical experience with Java backend 
 
 ### Planned Improvements
 
-Additional testing for duplicate-event handling
-
-Spring Security and JWT authentication
-
-Centralised exception handling
-
-Improved configuration and credential management
+- Additional testing for duplicate-event handling
+- Spring Security and JWT authentication
+- Centralised exception handling
+- Improved configuration and credential management
 
 
