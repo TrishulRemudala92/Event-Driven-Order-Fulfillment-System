@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: mysql-init
+  namespace: order-fulfillment
+
+data:
+  mysql-init.sql: |
+    CREATE DATABASE IF NOT EXISTS order_db;
+    CREATE DATABASE IF NOT EXISTS product_db;
+    CREATE DATABASE IF NOT EXISTS payment_db;
+    CREATE DATABASE IF NOT EXISTS user_db;
