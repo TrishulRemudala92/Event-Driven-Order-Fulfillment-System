@@ -171,17 +171,88 @@ mvn spring-boot:run
 
 Repeat the command for `product-service`, `payment-service` and `user-service`.
 
+### Run with Kubernetes
+
+The application has also been deployed locally using Kubernetes with Kind and Docker Desktop.
+
+The setup includes separate Deployments and Services for Order, Product, Payment and User services, along with MySQL and Apache Kafka.
+
+MySQL uses a PersistentVolumeClaim for data storage and a ConfigMap for database initialization. The Kubernetes resources run in the order-fulfillment namespace.
+
+The Docker images for the Spring Boot services are loaded into the Kind cluster before deployment. The existing Kubernetes YAML files are available in the Kubernetes directory.
+
+### Kubernetes Testing
+
+The main order-to-payment flow was tested using Swagger UI.
+
+Created an order through the Order Service API (HTTP 201).
+
+Retrieved the created order using its order number (HTTP 200).
+
+Verified that the Payment Service consumed the order event from Kafka.
+
+Retrieved the corresponding payment record through the Payment Service API (HTTP 200).
+
+Kubernetes port-forwarding was used to access the services locally.
+
+### API Documentation
+
+Swagger UI is available at the following addresses when the services are accessible on their configured local ports:
+
+Order Service: http://localhost:8081/swagger-ui/index.html
+
+Product Service: http://localhost:8082/swagger-ui/index.html
+
+Payment Service: http://localhost:8083/swagger-ui/index.html
+
+User Service: http://localhost:8084/swagger-ui/index.html
+
+The APIs can also be tested using Postman.
+
+### Testing
+
+The services include unit tests written using JUnit 5 and Mockito.
+
+To run the tests for an individual service:
+
+mvn clean test
+
+A GitHub Actions workflow is configured to run the Maven tests when changes are pushed to the repository.
+
+### Project Status
+
+The four microservices, REST APIs, database operations, Kafka communication, unit tests and Docker Compose setup have been implemented.
+
+The application has also been deployed locally using Kubernetes with Kind. The main asynchronous order-to-payment flow was tested successfully.
+
+The project is intended for learning and practical experience with Java backend development, event-driven communication and containerized applications.
+
+### Planned Improvements
+
+Additional testing for duplicate-event handling
+
+Spring Security and JWT authentication
+
+Centralised exception handling
+
+Improved configuration and credential management
+
 ## Project Status
 
-The main microservices, REST APIs, database operations, Kafka communication, service tests and Docker-based container setup are implemented.
+The four microservices, REST APIs, database operations, Kafka communication, unit tests and Docker Compose setup have been implemented.
 
-The complete application can be started using Docker Compose with MySQL, Apache Kafka, Order Service, Product Service, Payment Service and User Service running as separate containers.
+The application has also been deployed locally using Kubernetes with Kind. The main asynchronous order-to-payment flow was tested successfully.
 
-Kubernetes deployment is currently in progress. The goal is to run the microservices, MySQL and Apache Kafka together in a Kubernetes cluster using separate Kubernetes resources for each component.
+The project is intended for learning and practical experience with Java backend development, event-driven communication and containerized applications.
 
-Planned improvements include:
 
-* Complete the Kubernetes deployment of the application
-* Spring Security and JWT authentication
-* Centralised exception handling
+## Planned Improvements
+
+Additional testing for duplicate-event handling
+
+Spring Security and JWT authentication
+
+Centralised exception handling
+
+Improved configuration and credential management
 
